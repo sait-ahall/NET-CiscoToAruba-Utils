@@ -43,10 +43,13 @@ foreach ($row in $objOutSorted) {
 #create input csv for roomlist, set vars such as output folder for the Convert-CiscoToAruba module
 $objOutRooms = @()
 
+$outputBaseDir = 'c:\foo\out1' #test dir
+#$outputBaseDir = 'C:\Users\ahall\Southern Alberta Institute of Technology\Campus Network Upgrade Project - General\Deployment Plans'
+
 foreach ($row in $objOutSorted) {
     $x = New-Object -TypeName psobject -Property @{
         CiscoConfigFilePath = "y:\backups\"+ $row.RoomID +'\'+ $row.ConfigFileName
-        OutputDir = 'c:\foo\out1\'+ $row.RoomID
+        OutputDir = $outputBaseDir+'\'+ $row.RoomID
         ConversionMethod = 'OneToOne'
         ConsoleVisualizer ='False'
     }
