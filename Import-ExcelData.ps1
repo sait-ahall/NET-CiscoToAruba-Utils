@@ -7,7 +7,7 @@ $objOut = @()
 
 # set the order value to generate the specific switch configs:
 # make sure that the switch configs are backed up on the switches and are downloaed to Y:
-$exdataSelected = $exdata | Where-Object order -in (4,5)
+$exdataSelected = $exdata #| Where-Object order -in (9)
 foreach ($row in $exdataSelected) {
 
     if ($row.DeviceName) {
@@ -21,7 +21,7 @@ foreach ($row in $exdataSelected) {
             BackupCommand  = 'copy running-config tftp://10.194.133.10/cisco' + $row.DeviceName + '-confg-dump'
         }
 
-        $objOut += $x #>
+        $objOut += $x
     }
 }
 
@@ -29,7 +29,7 @@ foreach ($row in $exdataSelected) {
 $objOutSorted = ($objOut | Sort-Object order)
 
 # create command file for cut and paste
-"" | Out-File -Path 'c:\foo\backupcmds.txt'
+<# "" | Out-File -Path 'c:\foo\backupcmds.txt'
 
 foreach ($row in $objOutSorted) {
     $row.UGWeek | Out-File -Path 'c:\foo\backupcmds.txt' -Append
@@ -38,12 +38,12 @@ foreach ($row in $objOutSorted) {
     $row.BackupCommand | Out-File -Path 'c:\foo\backupcmds.txt' -Append
     "exit`n`n" | Out-File -Path 'c:\foo\backupcmds.txt' -Append
 
-}
+} #>
 
 #create input csv for roomlist, set vars such as output folder for the Convert-CiscoToAruba module
 $objOutRooms = @()
 
-$outputBaseDir = 'c:\foo\out1' #test dir
+$outputBaseDir = 'c:\foo\__out' #test dir
 #$outputBaseDir = 'C:\Users\ahall\Southern Alberta Institute of Technology\Campus Network Upgrade Project - General\Deployment Plans'
 
 foreach ($row in $objOutSorted) {
@@ -77,7 +77,7 @@ foreach ($row in $objOutRooms) {
     $pline += $x
 }
 
-$pline | Convert-CiscoToAruba
+$pline | Convert-CiscoToAruba -Verbose
 
 
 

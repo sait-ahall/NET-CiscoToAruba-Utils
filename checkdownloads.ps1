@@ -15,7 +15,7 @@ foreach ($row in $exdata) {
             Write-Host "Folder $($FolderName) Exists"
             #Create new file
             if (Get-Item -Path $FileName -ErrorAction Ignore) {
-               # Write-Host -ForegroundColor green "File $($FileName) exists in $($FolderName)"
+                Write-Host -ForegroundColor green "File $($FileName) exists in $($FolderName)"
             }
             else {
 
