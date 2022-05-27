@@ -7,7 +7,7 @@ $objOut = @()
 
 # set the order value to generate the specific switch configs:
 # make sure that the switch configs are backed up on the switches and are downloaed to Y:
-$exdataSelected = $exdata | Where-Object order -in (3,2)
+$exdataSelected = $exdata | Where-Object order -in (4,5)
 foreach ($row in $exdataSelected) {
 
     if ($row.DeviceName) {
