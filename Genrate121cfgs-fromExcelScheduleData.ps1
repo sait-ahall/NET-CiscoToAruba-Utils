@@ -53,6 +53,7 @@ $objOutRooms = @()
 $outputBaseDir = 'c:\foo\__out' #test dir
 #$outputBaseDir = 'C:\Users\ahall\Southern Alberta Institute of Technology\Campus Network Upgrade Project - General\Deployment Plans'
 
+
 foreach ($row in $objOutSorted) {
     $x = New-Object -TypeName psobject -Property @{
         CiscoConfigFilePath = "y:\backups\"+ $row.RoomID +'\'+ $row.ConfigFileName
