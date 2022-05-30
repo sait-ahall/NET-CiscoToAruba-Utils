@@ -3,7 +3,7 @@ try {
     $exData = Import-Excel 'C:\Users\ahall\Southern Alberta Institute of Technology\Campus Network Upgrade Project - General\OCM\Schedule\Burns Switch Upgrade schedule.xlsx'
 }
 catch {
-    write-host "File was locked"
+    write-host -ForegroundColor red "ERROR: Input Schedule File was locked, doing nothing and exiting."
     break
 }
 

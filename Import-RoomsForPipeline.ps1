@@ -24,4 +24,4 @@ foreach ($row in $RoomList) {
     $pline += $x
 }
 
-$pline | Convert-CiscoToAruba
+#$pline | Convert-CiscoToAruba
