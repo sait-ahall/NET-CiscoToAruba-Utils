@@ -1,5 +1,12 @@
 #use the import excel module to read in the sheet
-$exData = Import-Excel 'C:\Users\ahall\Southern Alberta Institute of Technology\Campus Network Upgrade Project - General\OCM\Schedule\Burns Switch Upgrade schedule.xlsx'
+try {
+    $exData = Import-Excel 'C:\Users\ahall\Southern Alberta Institute of Technology\Campus Network Upgrade Project - General\OCM\Schedule\Burns Switch Upgrade schedule.xlsx'
+}
+catch {
+    write-host "File was locked"
+    break
+}
+
 
 #Create a new object to finessse the switch and room data
 
@@ -7,7 +14,7 @@ $objOut = @()
 
 # set the order value to generate the specific switch configs:
 # make sure that the switch configs are backed up on the switches and are downloaed to Y:
-$exdataSelected = $exdata #| Where-Object order -in (9)
+$exdataSelected = $exdata #| Where-Object order -in (8)
 foreach ($row in $exdataSelected) {
 
     if ($row.DeviceName) {
@@ -77,6 +84,7 @@ foreach ($row in $objOutRooms) {
     $pline += $x
 }
 
+# run converion
 $pline | Convert-CiscoToAruba -Verbose
 
 
